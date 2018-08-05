@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test name="E:/dll">
+        <classes>
+            <class name="com.kn.demo.GetDemoTest">
+                <methods>
+                    <include name="case1"></include>
+                    <include name="case2"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+    <listeners>
+        <listener class-name="com.vimalselvam.testng.listener.ExtentTestNgFormatter"/>
+    </listeners>
+</suite>
