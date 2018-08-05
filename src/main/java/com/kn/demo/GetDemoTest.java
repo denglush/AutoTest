@@ -4,16 +4,20 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+/**
+ * 测试类
+ */
 public class GetDemoTest {
 
 
     @Test(description = "字段长度校验")
-    public void case1(){
+    public void case1() {
+
         System.out.println("test1");
     }
 
     @Test(description = "字段类型校验")
-    public void case2(){
+    public void case2() {
         System.out.println("test2");
     }
 
@@ -25,11 +29,12 @@ public class GetDemoTest {
     }
 
     @AfterTest
-    public void beforeCase(){
+    public void beforeCase() {
         System.out.println("aftertest");
     }
+
     @BeforeTest
-    public void afterCase1(){
+    public void afterCase1() {
 
 
         System.out.println("beforetest");
