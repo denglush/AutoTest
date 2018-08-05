@@ -7,14 +7,21 @@ import org.testng.annotations.Test;
 public class GetDemoTest {
 
 
-    @Test
+    @Test(description = "字段长度校验")
     public void case1(){
         System.out.println("test1");
     }
 
-    @Test
+    @Test(description = "字段类型校验")
     public void case2(){
         System.out.println("test2");
+    }
+
+
+    @Test(description = "反例异常测试")
+    public void case3() throws Exception {
+        System.out.println("test3");
+        throw new Exception("ceshiceshi");
     }
 
     @AfterTest

@@ -5,8 +5,9 @@
         <classes>
             <class name="com.kn.demo.GetDemoTest">
                 <methods>
-                    <include name="case1"></include>
-                    <include name="case2"></include>
+                    <include name="case1"/>
+                    <include name="case2"/>
+                    <include name="case3"/>
                 </methods>
             </class>
         </classes>
@@ -14,6 +15,6 @@
 
 
     <listeners>
-        <listener class-name="com.vimalselvam.testng.listener.ExtentTestNgFormatter"/>
+        <listener class-name="com.kn.listener.ExtentTestNGIReporterListener"/>
     </listeners>
 </suite>
