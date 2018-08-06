@@ -7,6 +7,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.testng.Reporter;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -19,16 +20,18 @@ public class HttpDemo {
         HttpGet httpGet = new HttpGet("http://baidu.com");
         DefaultHttpClient client = new DefaultHttpClient();
 
-       
 
+        Reporter.log("执行");
         HttpResponse httpResponse = client.execute(httpGet);
         HttpEntity  entity  = httpResponse.getEntity();
 
         int code = httpResponse.getStatusLine().getStatusCode();
         System.out.println("响应code"+code);
+        Reporter.log("响应code"+code);
 
         result = EntityUtils.toString(entity);
         System.out.println("响应内容是"+result);
+        Reporter.log("响应内容是"+result);
 
 
     }
