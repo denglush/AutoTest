@@ -10,6 +10,12 @@
                     <include name="case3"/>
                 </methods>
             </class>
+            <class name="com.kn.httpclient.HttpDemo">
+                <methods>
+                    <include name="getDemo"/>
+
+                </methods>
+            </class>
         </classes>
     </test>
 
