@@ -18,7 +18,7 @@ public class HttpDemo {
         HttpGet httpGet = new HttpGet("http://baidu.com");
         DefaultHttpClient client = new DefaultHttpClient();
         HttpResponse httpResponse = client.execute(httpGet);
-        HttpEntity  entity = httpResponse.getEntity();
+        HttpEntity  entity  = httpResponse.getEntity();
         result = entity.toString();
         System.out.println("结果是"+result);
     }
