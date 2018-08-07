@@ -18,8 +18,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ExtentTestNGIReporterListener  implements IReporter {
 
     //生成的路径以及文件名
-    private static final String OUTPUT_FOLDER = "test-output/";
-    private static final String FILE_NAME = "test-report.html";
+    private static final String OUTPUT_FOLDER = "test-report/";
+    private static final String FILE_NAME = "autotest_report.html";
 
     private ExtentReports extent;
 
@@ -106,15 +106,15 @@ public class ExtentTestNGIReporterListener  implements IReporter {
         //文件夹不存在的话进行创建
         File reportDir= new File(OUTPUT_FOLDER);
         if(!reportDir.exists()&& !reportDir .isDirectory()){
-            final boolean mkdir = reportDir.mkdir();
+            reportDir.mkdir();
         }
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(OUTPUT_FOLDER + FILE_NAME);
         // 设置静态文件的DNS
         //怎么样解决cdn.rawgit.com访问不了的情况
         htmlReporter.config().setResourceCDN(ResourceCDN.EXTENTREPORTS);
 
-        htmlReporter.config().setDocumentTitle("Api自动化测试报告");
-        htmlReporter.config().setReportName("Api自动化测试报告");
+        htmlReporter.config().setDocumentTitle("接口自动化测试报告");
+        htmlReporter.config().setReportName("自动化测试报告");
         htmlReporter.config().setChartVisibilityOnOpen(true);
         htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
         htmlReporter.config().setTheme(Theme.STANDARD);
@@ -139,23 +139,28 @@ public class ExtentTestNGIReporterListener  implements IReporter {
 
         if (tests.size() > 0) {
             //调整用例排序，按时间排序
-            Set<ITestResult> treeSet = new TreeSet<>(new Comparator<ITestResult>() {
+            Set<ITestResult> treeSet = new TreeSet<ITestResult>(new Comparator<ITestResult>() {
                 @Override
                 public int compare(ITestResult o1, ITestResult o2) {
-                    Number i = o1.getStartMillis() < o2.getStartMillis() ? 1. : new AtomicInteger(1);
-                    return i.intValue();
+                    return o1.getStartMillis()<o2.getStartMillis()?-1:1;
                 }
             });
             treeSet.addAll(tests.getAllResults());
             for (ITestResult result : treeSet) {
 
-                String name;
+                String name="";
                 //如果有参数，则使用参数的toString组合代替报告中的name
                 /*Object[] parameters = result.getParameters();
                 for(Object param:parameters){
                     name+=param.toString();
                 }*/
-                name = result.getMethod().getMethodName()+"---"+result.getMethod().getDescription();
+                if(name.length()>0){
+                    if(name.length()>50){
+                        name= name.substring(0,49)+"...";
+                    }
+                }else{
+                    name = result.getMethod().getMethodName()+"---"+result.getMethod().getDescription();
+                }
                 if(extenttest==null){
                     test = extent.createTest(name);
                 }else{
