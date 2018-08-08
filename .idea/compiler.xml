@@ -7,11 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Capital" />
-      </profile>
-      <profile name="Annotation profile for Capital" enabled="true">
-        <sourceOutputDir name="Capital/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="Capital/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
         <module name="KnAutoTest" />
       </profile>
     </annotationProcessing>
