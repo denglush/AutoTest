@@ -3,7 +3,7 @@ package com.kn.utils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public  class EncryptForParams {
+public  class EncryptForParamsUtils {
 
     public  static String  mdEncrypt(String s){
 

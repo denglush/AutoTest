@@ -2,7 +2,7 @@ package com.kn.httpclient;
 
 
 import com.google.gson.JsonObject;
-import com.kn.utils.EncryptForParams;
+import com.kn.utils.EncryptForParamsUtils;
 import com.kn.utils.HttpUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -41,6 +41,24 @@ public class HttpDemo {
 
     }
 
+
+    @Test(description = "查询接口,get请求，带参数")
+    public void getDemo2()  {
+        String testUrl= url+bundle.getString("clearing.settlement.query.uri");
+
+        Reporter.log("调用代付查询接口/pay/withdraw-query");
+
+        List<NameValuePair> list =  new ArrayList();
+        list.add(new BasicNameValuePair("clearing_repay_merchant_key","m_kaola1day-c120055"));
+        System.out.println("test"+list);
+        String result = HttpUtils.doGet(testUrl,list);
+
+        System.out.println("响应内容是"+result);
+        Reporter.log("响应内容"+result);
+
+    }
+
+
     @Test(description = "post请求:http://test3caiwu.api.so/pay/withdraw-query")
     public void postDemo() throws Exception {
 
@@ -53,8 +71,8 @@ public class HttpDemo {
         StringBuilder s = new StringBuilder();
         s.append("trade_report_code").append("=").append("TEST-trade20180730-107").append("&");
         s.append("f821f73fee143eb4da66e0b19dcc4824");
-        json.addProperty("sign",EncryptForParams.mdEncrypt(s.toString()));
-        System.out.println("签名="+EncryptForParams.mdEncrypt(s.toString()));
+        json.addProperty("sign", EncryptForParamsUtils.mdEncrypt(s.toString()));
+        System.out.println("签名="+ EncryptForParamsUtils.mdEncrypt(s.toString()));
 
 
         String result = HttpUtils.doPost(testUrl,json.toString());
@@ -74,13 +92,13 @@ public class HttpDemo {
         JsonObject json = new JsonObject();
         json.addProperty("trade_report_code","TEST-trade20180730-107");
 
-        StringBuilder s = new StringBuilder();
+        String s ;
 
-        s.append("trade_report_code").append("=").append("TEST-trade20180730-107").append("&");
-        s.append("f821f73fee143eb4da66e0b19dcc4824");
+        s = "trade_report_code"+"="+"TEST-trade20180730-107"+"&"+"f821f73fee143eb4da66e0b19dcc4824";
+
 
         String md_result;
-        md_result = EncryptForParams.mdEncrypt(s.toString());
+        md_result = EncryptForParamsUtils.mdEncrypt(s.toString());
 
         json.addProperty("sign",md_result);
         System.out.println("签名="+md_result);

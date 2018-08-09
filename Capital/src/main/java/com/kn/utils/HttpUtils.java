@@ -1,5 +1,6 @@
 package com.kn.utils;
 
+import com.sun.org.apache.xerces.internal.impl.dv.dtd.ENTITYDatatypeValidator;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -21,6 +22,7 @@ public class HttpUtils {
 
     /**
      * get请求
+     * @param url
      * @return
      */
     public static String doGet(String url) {
@@ -45,10 +47,49 @@ public class HttpUtils {
         return null;
     }
 
+
+    /**
+     * get请求
+     * @param url
+     * @return
+     */
+    public static String doGet(String url,List<NameValuePair> list) {
+        try {
+            HttpClient client = new DefaultHttpClient();
+            //发送get请求
+
+            // URIBuilder uri = new URIBuilder();
+            String s ;
+            s = EntityUtils.toString(new UrlEncodedFormEntity(list,"utf-8"));
+
+            System.out.println("jianzhiduicanshu"+s);
+            HttpGet request = new HttpGet(url+'?'+s);
+            HttpResponse response = client.execute(request);
+
+            // 请求发送成功，并得到响应
+            if (response.getStatusLine().getStatusCode() == 200) {
+                // 读取服务器返回过来的json字符串数据
+                String strResult = EntityUtils.toString(response.getEntity());
+                System.out.println("jieguoshi"+strResult);
+                return strResult;
+            }else
+                System.out.println("zhuangtai"+response.getStatusLine().getStatusCode()) ;
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
+
+
     /**
      * post请求(用于key-value格式的参数)
      * @param url
-     * @param params
+     * @param list
      * @return
      */
     public static String doPost(String url, List<NameValuePair> list){
@@ -103,17 +144,17 @@ public class HttpUtils {
     /**
      * post请求（用于请求json格式的参数）
      * @param url
-     * @param params
+     * @param json
      * @return
      */
-    public static String doPost(String url, String params) throws Exception {
+    public static String doPost(String url, String json) throws Exception {
 
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url);// 创建httpPost
         //httpPost.setHeader("Accept", "application/json");
         //httpPost.setHeader("Content-Type", "application/json");
 
-        StringEntity entity = new StringEntity(params, "UTF-8");
+        StringEntity entity = new StringEntity(json, "UTF-8");
         entity.setContentEncoding("UTF-8");
         entity.setContentType("application/json");
         httpPost.setEntity(entity);
