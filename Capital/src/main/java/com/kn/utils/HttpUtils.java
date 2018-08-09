@@ -7,7 +7,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
@@ -15,9 +14,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Map;
 
 public class HttpUtils {
 
@@ -32,9 +30,9 @@ public class HttpUtils {
             HttpGet request = new HttpGet(url);
             HttpResponse response = client.execute(request);
 
-            /**请求发送成功，并得到响应**/
+            // 请求发送成功，并得到响应
             if (response.getStatusLine().getStatusCode() == 0) {
-                /**读取服务器返回过来的json字符串数据**/
+                // 读取服务器返回过来的json字符串数据
                 String strResult = EntityUtils.toString(response.getEntity());
 
                 return strResult;
@@ -53,7 +51,7 @@ public class HttpUtils {
      * @param params
      * @return
      */
-    public static String doPost(String url, Map params){
+    public static String doPost(String url, List<NameValuePair> list){
 
         BufferedReader in ;
         try {
@@ -64,15 +62,15 @@ public class HttpUtils {
             request.setURI(new URI(url));
 
             //设置参数
-            List<NameValuePair> nvps = new ArrayList<>();
-            for (Object o : params.keySet()) {
-                String name = (String) o;
-                String value = String.valueOf(params.get(name));
-                nvps.add(new BasicNameValuePair(name, value));
-
-                //System.out.println(name +"-"+value);
-            }
-            request.setEntity(new UrlEncodedFormEntity(nvps, HTTP.UTF_8));
+ //           List<NameValuePair> nvps = new ArrayList<>();
+//            for (Object o : params.keySet()) {
+//                String name = (String) o;
+//                String value = String.valueOf(params.get(name));
+//                nvps.add(new BasicNameValuePair(name, value));
+//
+//                //System.out.println(name +"-"+value);
+//            }
+            request.setEntity(new UrlEncodedFormEntity(list, HTTP.UTF_8));
 
             HttpResponse response = client.execute(request);
             int code = response.getStatusLine().getStatusCode();

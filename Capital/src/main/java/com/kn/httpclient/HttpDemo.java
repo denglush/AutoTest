@@ -4,31 +4,36 @@ package com.kn.httpclient;
 import com.google.gson.JsonObject;
 import com.kn.utils.EncryptForParams;
 import com.kn.utils.HttpUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 import org.testng.Reporter;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class HttpDemo {
 
+    private ResourceBundle bundle;
+    private String url;
+
+    @BeforeTest(description = "环境初始化")
+    public void beforeTest(){
+        bundle = ResourceBundle.getBundle("application", Locale.CANADA);
+        url = bundle.getString("test.url");
+    }
+
     @Test(description = "查询接口,get请求")
     public void getDemo()  {
-        String url="http://test3caiwu.api.so/pay/withdraw-query";
+        String testUrl= url+bundle.getString("withdraw.query.uri");
 
 
         Reporter.log("调用代付查询接口/pay/withdraw-query");
 
-        String result = HttpUtils.doGet(url);
+        String result = HttpUtils.doGet(testUrl);
 
         System.out.println("响应内容是"+result);
         Reporter.log("响应内容"+result);
@@ -39,7 +44,7 @@ public class HttpDemo {
     @Test(description = "post请求:http://test3caiwu.api.so/pay/withdraw-query")
     public void postDemo() throws Exception {
 
-        String url="http://test3caiwu.api.so/pay/withdraw-query";
+        String testUrl= url+bundle.getString("withdraw.query.uri");
 
 
         JsonObject json = new JsonObject();
@@ -52,7 +57,7 @@ public class HttpDemo {
         System.out.println("签名="+EncryptForParams.mdEncrypt(s.toString()));
 
 
-        String result = HttpUtils.doPost(url,json.toString());
+        String result = HttpUtils.doPost(testUrl,json.toString());
         System.out.println("响应内容+\n"+result);
         Reporter.log("响应内容");
 
@@ -62,7 +67,7 @@ public class HttpDemo {
 
     @Test(description = "post请求:http://test3caiwu.api.so/pay/withdraw")
     public void postDemo3() throws Exception {
-        String url="http://test3caiwu.api.so/pay/withdraw";
+        String testUrl= url+bundle.getString("withdraw.query.uri");
         // 定义client
 
 
@@ -81,7 +86,7 @@ public class HttpDemo {
         System.out.println("签名="+md_result);
 
 
-        String  result = HttpUtils.doPost(url,json.toString());
+        String  result = HttpUtils.doPost(testUrl,json.toString());
 
         System.out.println("响应内容+\n"+result);
         Reporter.log("响应内容"+result);
@@ -95,22 +100,20 @@ public class HttpDemo {
 
 
 
-    @Test
-    public void postDemo2() throws IOException {
-        String url = "http://www.baidu.com";
-        DefaultHttpClient client = new DefaultHttpClient();
-        HttpPost post = new HttpPost(url);
+    @Test(description = "post键值对方式请求")
+    public void postDemo2() {
+        String testUrl = url+bundle.getString("withdraw.uri");
+
+
         List<NameValuePair> list = new ArrayList<>();
         list.add(new BasicNameValuePair("id","1"));
         list.add(new BasicNameValuePair("order","wd12334454"));
 
         System.out.println("打印请求参数"+list.toString());
-        post.setEntity(new UrlEncodedFormEntity(list,"utf-8"));
 
-        HttpResponse response = client.execute(post);
 
-        HttpEntity entity2 = response.getEntity();
-        String result = EntityUtils.toString(entity2);
+       String result = HttpUtils.doPost(testUrl,list);
+
         System.out.println("响应内容是"+result);
     }
 
