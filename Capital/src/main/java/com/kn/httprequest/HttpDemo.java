@@ -1,4 +1,4 @@
-package com.kn.httpdemo;
+package com.kn.httprequest;
 
 
 import com.kn.utils.HttpUtils;

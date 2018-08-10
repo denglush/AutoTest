@@ -1,4 +1,4 @@
-package com.kn.httpdemo;
+package com.kn.httprequest;
 
 import com.google.gson.JsonObject;
 import com.kn.utils.EncryptForParamsUtils;
@@ -22,7 +22,7 @@ public class WithdrawQueryTest {
 
     @BeforeTest
     public void beforeTest(){
-        url = bundle.getString("test.url");;
+        url = bundle.getString("test.url");
         bundle = ResourceBundle.getBundle("application", Locale.CHINA);
     }
 
@@ -65,7 +65,7 @@ public class WithdrawQueryTest {
 
 
         String md_result;
-        md_result = EncryptForParamsUtils.mdEncrypt(s.toString());
+        md_result = EncryptForParamsUtils.mdEncrypt(s);
 
         json.addProperty("sign",md_result);
         System.out.println("签名="+md_result);
