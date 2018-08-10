@@ -38,7 +38,12 @@ public class TradeQueryTest {
 
         String result = HttpUtils.doPost(testUrl,json.toString());
 
-        // JsonObject object = handleResult(result);
+        // JsonObject jsonResult = JsonObject.fromObject(result);
+        // JsonObject object = new JsonObject().getAsJsonObject(result);
+
+       //  String code = object.get("data");
+        // String message = object.get("message");
+
 
     }
 
