@@ -88,7 +88,7 @@ public class ClearingSettlementQueryTest {
                    * 注意asset对象字符类型,此处全为String类型
                    */
                  if (jsonObject.get("data") !=null && code.equals("0")){
-                         JsonArray array = jsonObject.getJsonArray("data");
+                         JsonArray array = jsonObject.getAsJsonArray("data");
                          if (array.size() > 0){
                                  JsonObject data = array.getAsJsonObject();
                                  String su_id = data.getAsString();
