@@ -4,6 +4,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.kn.utils.EncryptForParamsUtils;
 import com.kn.utils.HttpUtils;
+import net.sf.json.JSONObject;
+import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -38,11 +40,12 @@ public class TradeQueryTest {
 
         String result = HttpUtils.doPost(testUrl,json.toString());
 
-        // JsonObject jsonResult = JsonObject.fromObject(result);
-        // JsonObject object = new JsonObject().getAsJsonObject(result);
+         JSONObject jsonResult = JSONObject.fromObject(result);
 
-       //  String code = object.get("data");
-        // String message = object.get("message");
+         String code = jsonResult.getString("code");
+         String message = jsonResult.getString("data");
+         Assert.assertEquals(code,0);
+         Assert.assertEquals(message,"成功");
 
 
     }
