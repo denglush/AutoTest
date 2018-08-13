@@ -1,5 +1,7 @@
 package com.kn.utils;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -19,7 +21,7 @@ import java.util.List;
 public class HttpUtils {
 
     /**
-     * get请求
+     * get请求（无参数）
      * @param url
      * @return
      */
@@ -47,31 +49,31 @@ public class HttpUtils {
 
 
     /**
-     * get请求
+     * get请求(用于key-value格式的参数)
      * @param url
      * @return
      */
     public static String doGet(String url,List<NameValuePair> list) {
         try {
             HttpClient client = new DefaultHttpClient();
-            //发送get请求
 
-            // URIBuilder uri = new URIBuilder();
+
             String s ;
             s = EntityUtils.toString(new UrlEncodedFormEntity(list,"utf-8"));
 
-            System.out.println("jianzhiduicanshu"+s);
+            System.out.println("键值对参数"+s);
             HttpGet request = new HttpGet(url+'?'+s);
+            //发送get请求
             HttpResponse response = client.execute(request);
 
             // 请求发送成功，并得到响应
             if (response.getStatusLine().getStatusCode() == 200) {
                 // 读取服务器返回过来的json字符串数据
                 String strResult = EntityUtils.toString(response.getEntity());
-                System.out.println("jieguoshi"+strResult);
+                System.out.println("结果是"+strResult);
                 return strResult;
             }else
-                System.out.println("zhuangtai"+response.getStatusLine().getStatusCode()) ;
+                System.out.println("请求状态"+response.getStatusLine().getStatusCode()) ;
 
         }
         catch (IOException e) {
@@ -175,6 +177,44 @@ public class HttpUtils {
 
         }
         return null;
+    }
+
+
+
+    /**
+     * 解析json
+     */
+    public void handleResult(String result){
+
+        JsonObject jsonObject = new JsonObject();
+        JsonObject json =     jsonObject.getAsJsonObject(result);
+
+        //        System.out.println(jsonObject.has("message"));
+        //        System.out.println(jsonObject.getString("message"));
+        String code = jsonObject.getAsString();
+        String message = jsonObject.getAsString();
+        /**
+         * 进行结果验证
+         * 注意asset对象字符类型,此处全为String类型
+         */
+        if (jsonObject.get("data") !=null && code.equals("0")){
+            JsonArray array = jsonObject.getAsJsonArray("data");
+            if (array.size() > 0){
+                JsonObject data = array.getAsJsonObject();
+                String su_id = data.getAsString();
+                System.out.println("subjectId:" + su_id);
+                //   Assert.assertEquals(subject_id,su_id);
+
+            }else {
+                //  Assert.assertEquals(hcode,code);
+                System.out.println(code);
+            }
+        }
+        else {
+            // Assert.assertEquals(hcode,code);
+        }
+        System.out.println("message:" + message);
+
     }
 
 }

@@ -1,14 +1,13 @@
 package com.kn.httprequest;
 
 import com.google.gson.JsonObject;
+import com.kn.model.ApiName;
+import com.kn.utils.Config;
 import com.kn.utils.EncryptForParamsUtils;
 import com.kn.utils.HttpUtils;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 
 /**
@@ -17,19 +16,17 @@ import java.util.ResourceBundle;
  */
 public class WithdrawQueryTest {
 
-    private ResourceBundle bundle;
-    private String url;
+   private String testUrl;
 
     @BeforeTest
     public void beforeTest(){
-        url = bundle.getString("test.url");
-        bundle = ResourceBundle.getBundle("application", Locale.CHINA);
+        // 获取接口地址
+        testUrl = Config.getUrl(ApiName.TRADEQUERY);
     }
 
     @Test(description = "post请求:http://test3caiwu.api.so/pay/withdraw-query")
     public void postDemo() throws Exception {
 
-        String testUrl= url+bundle.getString("withdraw.query.uri");
 
 
         JsonObject json = new JsonObject();
@@ -52,7 +49,7 @@ public class WithdrawQueryTest {
 
     @Test(description = "post请求:http://test3caiwu.api.so/pay/withdraw")
     public void postDemo3() throws Exception {
-        String testUrl= url+bundle.getString("withdraw.query.uri");
+
         // 定义client
 
 
@@ -77,4 +74,7 @@ public class WithdrawQueryTest {
         Reporter.log("响应内容"+result);
 
     }
+
+
+
 }
