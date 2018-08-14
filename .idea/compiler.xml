@@ -7,8 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Capital" />
+        <module name="capital" />
         <module name="KnAutoTest" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="capital" target="7" />
+      <module name="KnAutoTest" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
