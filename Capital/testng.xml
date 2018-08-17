@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="API接口自动化测试ji">
     <test verbose="2" preserve-order="true" name="/Users/denglulu/git/KnAutoTest/capital">
-        <classes><class name="com.kn.apicase.TradeTest">
+        <classes><class name="com.kn.apicase.baofoo.TradeTest">
             <methods>
                 <include name="case1"/>
                 <include name="case2"/>

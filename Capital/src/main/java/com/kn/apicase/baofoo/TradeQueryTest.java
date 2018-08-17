@@ -1,4 +1,4 @@
-package com.kn.apicase;
+package com.kn.apicase.baofoo;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

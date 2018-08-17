@@ -1,12 +1,12 @@
 {
   "type": "Transfer",
-  "key": "23r325434544",
-  "from_system": "TengQiao",
+  "key": "328cds83r49327f",
+  "from_system": "baofoo-deposit",
   "data": {
-    "tradeCode": "854310010122311232120124332432",
+    "tradeCode": "sdoewf893d2sdje93",
     "tradeType": "account_transfer",
-    "payAccNo": "EA2001670267",
-    "recAccNo": "EA2001670258",
-    "txnAmt": 1.23
+    "payAccNo": "854310010122805070",
+    "recAccNo": "EA2008794898",
+    "txnAmt": 20000
   }
 }
