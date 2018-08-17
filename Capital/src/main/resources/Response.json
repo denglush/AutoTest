@@ -1,0 +1,24 @@
+[
+  {
+    "description": "转账接口，返回成功",
+    "request": {
+      "uri": "/trade/transfer",
+      "method": "post"
+    },
+    "response": {
+      "json":{
+        "code": 0,
+        "message": "交易成功",
+        "data": {
+          "request_key": "854310010122311232120124332432",
+          "amount": 1,
+          "request_type": "account_transfer",
+          "started_at": "2018-08-13 16:13:59",
+          "finished_at": "2018-08-13 16:13:59"
+        }}
+
+    }
+  }
+
+]
+

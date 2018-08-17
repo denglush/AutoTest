@@ -2,6 +2,7 @@ package com.kn.utils;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import net.sf.json.JSONObject;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -11,12 +12,16 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.testng.Reporter;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class HttpUtils {
 
@@ -154,29 +159,101 @@ public class HttpUtils {
         //httpPost.setHeader("Accept", "application/json");
         //httpPost.setHeader("Content-Type", "application/json");
 
-        StringEntity entity = new StringEntity(json, "UTF-8");
+        System.out.println("请求url："+url);
+        Reporter.log("请求url："+url);
+        System.out.println("请求u参数："+json);
+        Reporter.log("请求参数："+json);
+         StringEntity entity = new StringEntity(json, "UTF-8");
         entity.setContentEncoding("UTF-8");
         entity.setContentType("application/json");
         httpPost.setEntity(entity);
-        HttpResponse response ;
+//        httpPostst.setEntity(json);
+        HttpResponse response;
+        String jsonString ="";
+
 
         try {
-
+            Reporter.log("开始执行");
             response = httpclient.execute(httpPost);
             StatusLine status = response.getStatusLine();
             int state = status.getStatusCode();
+            System.out.println("请求状态："+state);
+            Reporter.log("请求状态："+state);
             if (state == HttpStatus.SC_OK) {
-                HttpEntity responseEntity = response.getEntity();
-                String jsonString = EntityUtils.toString(responseEntity);
-                return jsonString;
-            }
+            HttpEntity responseEntity = response.getEntity();
+             jsonString = EntityUtils.toString(responseEntity);
+            return jsonString;
+             }
             else{
                // logger.error("请求返回:"+state+"("+url+")");
             }
-       }catch (Exception e){
+        } catch (Exception e) {
 
         }
-        return null;
+        return jsonString;
+
+    }
+
+
+    /**
+     * 更新原始jsonObject请求数据
+     * @param jsonObject
+     * @param map
+     */
+    public static  void getJSONData (JSONObject jsonObject,Map map){
+
+        Iterator<String> sIterator = jsonObject.keys();
+        while(sIterator.hasNext()){
+
+
+            // 获得key
+            String key = sIterator.next();
+            System.out.println("key值"+key);
+            System.out.println(map.get(key));
+            if(jsonObject.get(key) instanceof  JSONObject){
+                getJSONData((JSONObject) jsonObject.get(key),map);
+            }else{
+
+                if(map.get(key) != null && map.get(key) !="" ){
+                    jsonObject.put(key,map.get(key));
+                    // 根据key获得value, value也可以是JSONObject,JSONArray,使用对应的参数接收即可
+                    String value = jsonObject.getString(key);
+                }
+            }
+
+        }
+        System.out.println(jsonObject.toString());
+
+
+    }
+
+
+    public static String getDatafromFile(String Path) {
+
+        BufferedReader reader = null;
+        String laststr = "";
+        try {
+            FileInputStream fileInputStream = new FileInputStream(Path);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
+            reader = new BufferedReader(inputStreamReader);
+            String tempString = null;
+            while ((tempString = reader.readLine()) != null) {
+                laststr += tempString;
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return laststr;
+
     }
 
 

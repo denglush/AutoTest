@@ -1,0 +1,12 @@
+{
+  "type": "Transfer",
+  "key": "23r325434544",
+  "from_system": "TengQiao",
+  "data": {
+    "tradeCode": "854310010122311232120124332432",
+    "tradeType": "account_transfer",
+    "payAccNo": "EA2001670267",
+    "recAccNo": "EA2001670258",
+    "txnAmt": 1.23
+  }
+}

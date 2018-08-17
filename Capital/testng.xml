@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="API接口自动化测试ji">
+    <test verbose="2" preserve-order="true" name="/Users/denglulu/git/KnAutoTest/capital">
+        <classes><class name="com.kn.apicase.TradeTest">
+            <methods>
+                <include name="case1"/>
+                <include name="case2"/>
+                <include name="case3"/>
+                <include name="case4"/>
+            </methods>
+        </class>
+            <!--<class name="com.kn.httpclient.HttpDemo">-->
+                <!--<methods>-->
+                    <!--<include name="getDemo"/>-->
+                    <!--<include name="postDemo"/>-->
+                <!--</methods>-->
+            <!--</class>-->
+        </classes>
+    </test>
+
+    <listeners><listener class-name="com.kn.listener.ExtentTestNGIReporterListener"/></listeners>
+</suite>
