@@ -1,0 +1,11 @@
+{"type":"transafer",
+  "key":"transafer123232",
+  "from_system":"baofoo-deposit",
+  "data": {
+    "tradeCode": "Transfer",
+    "tradeType": "account_transfer",
+    "payAccNo": "854310010122805070",
+    "recAccNo": "EA2008794898",
+    "txnAmt": 1000
+  }
+}

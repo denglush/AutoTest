@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="宝付腾桥接口自动化测试">
+    <test name="接口自动化测试用例">
+        <classes>
+
+            <class name="com.kn.httprequest.HttpDemo">
+                <methods>
+                <include name="getDemo"/>
+                    <include name="postDemo"/>
+                    <include name="postDemo2"/>
+                </methods>
+            </class>
+            <class name="com.kn.httprequest.ClearingSettlementQueryTest">
+                <methods>
+                    <include name="queryTestCase1"/>
+                    <include name="queryTestCase2"/>
+
+                </methods>
+            </class>
+            <class name="com.kn.httprequest.WithdrawQueryTest">
+                <methods>
+                    <include name="postDemo"/>
+                    <include name="postDemo3"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <listeners>
+        <listener class-name="com.kn.listener.ExtentTestNGIReporterListener"/>
+    </listeners>
+</suite>
