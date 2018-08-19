@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b302167-1621-4100-8666-b8251e714d7d" name="Default" comment="Merge branch 'master' of https://github.com/denglush/KnAutoTest&#10;&#10;# Conflicts:&#10;#&#9;Capital/target/classes/com/kn/utils/HttpUtils.class&#10;#&#9;Capital/target/classes/com/kn/utils/JdbcConnect.class&#10;#&#9;Capital/target/classes/moco-runner-0.11.0-standalone.jar">
-      <change afterPath="$PROJECT_DIR$/Capital/src/main/java/com/kn/utils/SSHUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capital/src/main/java/com/kn/utils/JdbcConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/Capital/src/main/java/com/kn/utils/JdbcConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Capital/src/main/java/com/kn/utils/SSHUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Capital/src/main/java/com/kn/utils/SSHUtils.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/Capital/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -39,13 +37,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="285" />
+          <entry key="java" value="301" />
           <entry key="xml" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="285" />
+          <entry key="JAVA" value="301" />
           <entry key="XML" value="17" />
         </counts>
       </usages-collector>
@@ -86,10 +84,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Capital/src/main/java/com/kn/utils/SSHUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="141" column="39" lean-forward="true" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
+            <state relative-caret-position="-1140">
+              <caret line="69" column="52" selection-start-line="69" selection-start-column="52" selection-end-line="69" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2402#2403#0" expanded="true" />
+                <element signature="e#2479#2480#0" expanded="true" />
+                <element signature="e#2539#2540#0" expanded="true" />
+                <element signature="e#2609#2610#0" expanded="true" />
                 <element signature="e#2640#2641#0" expanded="true" />
                 <element signature="e#2675#2676#0" expanded="true" />
                 <element signature="e#2719#2720#0" expanded="true" />
@@ -207,7 +209,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="6" />
     <option name="y" value="4" />
     <option name="width" value="1386" />
@@ -274,7 +276,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534688806563" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534689006297" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -535,7 +537,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534515474125</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Merge branch 'master' of https://github.com/denglush/KnAutoTest&#10;&#10;# Conflicts:&#10;#&#9;Capital/target/classes/com/kn/utils/HttpUtils.class&#10;#&#9;Capital/target/classes/com/kn/utils/JdbcConnect.class&#10;#&#9;Capital/target/classes/moco-runner-0.11.0-standalone.jar">
+      <created>1534688837141</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1534688837141</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -778,10 +787,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Capital/src/main/java/com/kn/utils/SSHUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="141" column="39" lean-forward="true" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
+        <state relative-caret-position="-1140">
+          <caret line="69" column="52" selection-start-line="69" selection-start-column="52" selection-end-line="69" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2402#2403#0" expanded="true" />
+            <element signature="e#2479#2480#0" expanded="true" />
+            <element signature="e#2539#2540#0" expanded="true" />
+            <element signature="e#2609#2610#0" expanded="true" />
             <element signature="e#2640#2641#0" expanded="true" />
             <element signature="e#2675#2676#0" expanded="true" />
             <element signature="e#2719#2720#0" expanded="true" />
