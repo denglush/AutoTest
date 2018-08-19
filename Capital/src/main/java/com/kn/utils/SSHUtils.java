@@ -19,7 +19,7 @@ public class SSHUtils {
         jsch.addIdentity("/Users/denglulu/.ssh/id_rsa");
         Session session = jsch.getSession(destHost.getUsername(), destHost.getHost(), destHost.getPort());
         // session.setPassword(destHost.getPassword());
-
+        session.setConfig("userauth.gssapi-with-mic", "no");
         session.setConfig("StrictHostKeyChecking", "no");  // 第一次访问服务器时不用输入yes
         session.setTimeout(destHost.getTimeout());
         session.connect();
