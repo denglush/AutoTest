@@ -12,7 +12,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="capital" target="7" />
-      <module name="Capital" target="7" />
       <module name="KnAutoTest" target="1.5" />
     </bytecodeTargetLevel>
   </component>
