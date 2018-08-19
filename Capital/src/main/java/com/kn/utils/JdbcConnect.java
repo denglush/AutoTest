@@ -3,11 +3,22 @@ package com.kn.utils;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.sql.*;
 
-public class JdbcConnect {
-    public static void main(String[] args) {
+import static com.sun.deploy.uitoolkit.ui.UIFactory.ERROR_MESSAGE;
+import static jdk.nashorn.tools.Shell.SUCCESS;
 
+
+
+public class JdbcConnect {
+
+
+    public static void main(String args[]){
+
+
+        gotoEnvir();
         String user = "qsq ";  //数据库用户名
         String password = "Pswd4BS!";  //数据库密码
         try {
@@ -19,7 +30,7 @@ public class JdbcConnect {
 // 2、创建连接
         Connection conn = null;
         try{
-            go();
+            // go();
             conn = DriverManager.getConnection("jdbc:mysql://10.1.1.16:3306/hftq", user, password);
             getData(conn);
 
@@ -31,13 +42,17 @@ public class JdbcConnect {
 
     public static void go() {
         String url = "url"; //远程MySQL服务器
-        String sshurl = "182.254.211.45 "; //SSH服务器
+        String sshurl = "182.254.211.45"; //SSH服务器
         String sshuser = "denglulu "; //SSH连接用户名
         String sshpassword = "denglulu542"; //SSH连接密码
         try {
             JSch jsch = new JSch();
-            Session session = jsch.getSession(sshuser, sshurl, 22);
+            // jsch.setKnownHosts("/Users/denglulu/.ssh/id_rsa");
+            jsch.addIdentity("/Users/denglulu/.ssh/id_rsa");
+            Session session = jsch.getSession(sshuser, sshurl, 36000);
+
             session.setPassword(sshpassword);
+            session.setConfig("userauth.gssapi-with-mic", "no");
             session.setConfig("StrictHostKeyChecking", "no");
             session.connect();
             System.out.println(session.getServerVersion());//这里打印SSH服务器版本信息
@@ -88,6 +103,35 @@ public class JdbcConnect {
 //        }
         st.close();
         conn.close();
+    }
+
+
+    public  static void  gotoEnvir(){
+        try {
+            String shpath="/Users/denglulu/ssh_tool.sh";
+            Process ps = Runtime.getRuntime().exec(shpath);
+
+
+            // 等待程序执行结束并输出状态
+            int exitCode = ps.waitFor();
+            if (exitCode == SUCCESS) {
+                System.out.println("成功");
+            } else {
+                System.err.println(ERROR_MESSAGE + exitCode);
+            }
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(ps.getInputStream()));
+            StringBuffer sb = new StringBuffer();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+            String result = sb.toString();
+            System.out.println(result);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
